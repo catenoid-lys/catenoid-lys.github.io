@@ -22,7 +22,7 @@
         localStorage.setItem('test-local', value);
         sessionStorage.setItem('test-session', value);
         
-        $('#test1').val('');
+        location.reload();
     });
 
     $('#get-cookie').text('cookie: ' + $.cookie('test-cookie'));
