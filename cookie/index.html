@@ -1,9 +1,7 @@
 <html>
     <body>
         <input id="test1">
-        <input id="set-cookie" type="button" value="cookie">
-        <input id="set-local" type="button" value="local storage">
-        <input id="set-session" type="button" value="session storage">
+        <input id="save" type="button" value="save">
         <hr>
         <ul>
             <li id="get-cookie"></li>
@@ -17,17 +15,15 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script>
-    $('#set-cookie').click(function(){
-        $.cookie('test-cookie', $('#test1').val(), { expires: 7, path: '/' });
+    $('#save').click(function(){
+        var value = $('#test1').val();
+        
+        $.cookie('test-cookie', value, { expires: 7, path: '/' });
+        localStorage.setItem('test-local', value);
+        sessionStorage.setItem('test-session', value);
+        
+        $('#test1').val('');
     });
-
-    $('#set-local').click(function(){
-        localStorage.setItem('test-local', $('#test1').val());
-    });
-
-    $('#set-session').click(function(){
-        sessionStorage.setItem('test-session', $('#test1').val());
-    });     
 
     $('#get-cookie').text('cookie: ' + $.cookie('test-cookie'));
     $('#get-local').text('local storage: ' + localStorage.getItem('test-local'));
